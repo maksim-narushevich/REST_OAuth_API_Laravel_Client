@@ -1,9 +1,9 @@
 <?php
 
 $arrOptions = [
-    'strName' => 'nathan',
-    'strEmail' => 'nathan@gmail.com',
-    'strPassword' => 'nathanqwerty',
+    'strName' => 'anna',
+    'strEmail' => 'anna@gmail.com',
+    'strPassword' => 'annaqwerty',
     'token' => 'rIGU7NLzDUCzXcUHqhZctGVwP2d9Jc0hwtW2BWDT'
 ];
 
@@ -13,17 +13,24 @@ $arrDetails = [
 ];
 
 
-$strToken = GetToken($arrOptions);
-if (!empty($strToken)) {
-    $arrDetails['strToken'] = $strToken;
-    AddItem($arrDetails);
-} else {
-    echo "Token is expired or not correct!";
+$arrResult = GetToken($arrOptions);
+if (!$arrResult['strError']) {
+    if (!empty($arrResult['strToken'])) {
+        $arrDetails['strToken'] = $arrResult['strToken'];
+        AddItem($arrDetails);
+    } else {
+        echo "Token is expired or not correct!";
+    }
+}else {
+    print_r($arrResult['strError']);
 }
 
 
 function GetToken($arrOptions)
 {
+    $arrResult = array();
+    $strError = false;
+    $strResult = "";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "http://larapassport.local/oauth/token");
     curl_setopt($ch, CURLOPT_POST, 1);
@@ -39,8 +46,17 @@ function GetToken($arrOptions)
     );
 
     curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-    $ans = json_decode(curl_exec($ch));
-    return $ans->access_token;
+    $arrCurlResult = json_decode(curl_exec($ch));
+    if (isset($arrCurlResult->error) && $arrCurlResult->error) {
+        $strError = $arrCurlResult->error;
+    } else {
+        $strResult = $arrCurlResult->access_token;
+    }
+
+    $arrResult['strError'] = $strError;
+    $arrResult['strToken'] = $strResult;
+
+    return $arrResult;
 }
 
 

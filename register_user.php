@@ -16,7 +16,7 @@ function RegisterUser($arrOptions){
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://larapassport.local/api/v1/register",
+        CURLOPT_URL => "http://larapassport.local/api/register",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
