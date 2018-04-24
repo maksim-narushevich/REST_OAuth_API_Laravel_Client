@@ -1,19 +1,32 @@
 <?php
 require 'vendor/autoload.php';
 
+
 $router = new AltoRouter();
 
-// setup routes
-$router->map('GET','/', 'views/home.php', 'home');
-$router->map('GET','/register', 'views/register.php', 'register');
-$router->map('GET','/register/', 'views/register.php', 'register/');
-$router->map('GET','/get-token', 'views/token.php', 'get-token');
-$router->map('GET','/get-token/', 'views/token.php', 'get-token/');
+// Specify our Twig templates location
+$loader = new Twig_Loader_Filesystem(__DIR__.'/views/templates');
+// Instantiate our Twig
+$twig = new Twig_Environment($loader);
+
+
+
+//-- Initialize application routes
+require_once 'routes/route.php';
+
 $match = $router->match();
 // do we have a match?
 if($match) {
-  require $match['target'];
+    list( $controller, $action ) = explode( '#', $match['target'] );
+    if ( is_callable(array($controller, $action)) ) {
+        call_user_func_array(array($controller,$action), array($match['params']));
+    } else {
+        // here your routes are wrong.
+        // Throw an exception in debug, send a  500 error in production
+    }
 } else {
   header("HTTP/1.0 404 Not Found");
   require 'views/404.html';
 }
+
+
