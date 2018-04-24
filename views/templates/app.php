@@ -3,7 +3,7 @@
 <head>
     {% block head %}
     <link rel="stylesheet" href="/public/css/style.css" />
-    <title>{% block title %}{% endblock %} - My Webpage</title>
+    <title>{% block title %}{% endblock %} - OAuth REST Client</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 

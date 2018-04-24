@@ -8,15 +8,14 @@ class AjaxController
 
     public function testMethod(){
 
-        $twig=$GLOBALS["twig"];
-        echo $twig->render('test.php' );
+        $twig=Config::$twig;
+        //echo $twig->render('test.php' , ['config' => $config]);
+        echo $twig->render('test.php');
     }
-
 
 
     /**
      * ajaxGetToken
-     *
      *
      * @return void
      */
@@ -24,10 +23,9 @@ class AjaxController
 
 
         $arrOptions=[
-            'strName'=>'anna',
             'strEmail'=>$_POST['strEmail'],
             'strPassword'=>$_POST['strPassword'],
-            'token'=>'rIGU7NLzDUCzXcUHqhZctGVwP2d9Jc0hwtW2BWDT'
+            'token'=>Config::$str_API_Token
         ];
 
 
@@ -35,7 +33,7 @@ class AjaxController
         $strError=false;
         $strResult="";
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "http://larapassport.local/oauth/token");
+        curl_setopt($ch, CURLOPT_URL, Config::$strTokenUrl);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-Requested-With: XMLHttpRequest"));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
@@ -43,9 +41,9 @@ class AjaxController
         $postData = array(
             'username' => $arrOptions['strEmail'],
             'password' => $arrOptions['strPassword'],
-            'client_id' => '2',
+            'client_id' => Config::$intClientID,
             'client_secret' => $arrOptions['token'],
-            'grant_type' => 'password'
+            'grant_type' => Config::$srtGrantType
         );
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
@@ -62,8 +60,6 @@ class AjaxController
         if($arrResult['strError']){
             $strError=true;
         }
-
-
 
         header('Content-Type: application/json');
         echo json_encode(array(

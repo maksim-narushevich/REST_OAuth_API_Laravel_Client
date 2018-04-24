@@ -9,7 +9,8 @@
 {% block content %}
 <h1>Index</h1>
 <p class="important">
-    Welcome to Test page.
+    Welcome to Test page.<br>
+    {{config}}
 </p>
 
 

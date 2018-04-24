@@ -28,7 +28,7 @@
       "codeclimate/php-test-reporter": "dev-master"
    },
    "autoload": {
-      "classmap": ["AltoRouter.php", "Controllers/"]
+      "classmap": ["AltoRouter.php", "Controllers/","Models/"]
    },
    "scripts": {
      "test": "vendor/bin/phpunit"
