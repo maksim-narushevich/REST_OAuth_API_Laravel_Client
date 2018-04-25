@@ -21,12 +21,11 @@ class AjaxController
      */
     public function ajaxGetToken(){
 
-        $arrOptions=[
-            'strEmail'=>$_POST['strEmail'],
-            'strPassword'=>$_POST['strPassword'],
-            'token'=>Config::$str_API_Token
-        ];
-
+            $arrOptions=[
+                'strEmail'=>$_POST['strEmail'],
+                'strPassword'=>$_POST['strPassword'],
+                'token'=>Config::$str_API_Token
+            ];
 
         $arrResult=array();
         $strError=false;
@@ -101,8 +100,7 @@ class AjaxController
                 "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
             ),
         ));
-
-        $response = curl_exec($curl);
+        curl_exec($curl);
         $err = curl_error($curl);
 
         curl_close($curl);
@@ -110,12 +108,44 @@ class AjaxController
         if ($err) {
             $strError=true;
         } else {
-            $arrResult['strToken']= $arrOptions['strName'];
+            $arrResult['strName']= $arrOptions['strName'];
         }
+
+        //********* START getting authorization token ***************//
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, Config::$strTokenUrl);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-Requested-With: XMLHttpRequest"));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+        $postData = array(
+            'username' => $arrOptions['strEmail'],
+            'password' => $arrOptions['strPassword'],
+            'client_id' => Config::$intClientID,
+            'client_secret' => $arrOptions['token'],
+            'grant_type' => Config::$srtGrantType
+        );
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+        $arrCurlResult = json_decode(curl_exec($ch));
+        if (isset($arrCurlResult->error) && $arrCurlResult->error) {
+            $strError=$arrCurlResult->error;
+        }else{
+            $strResult=$arrCurlResult->access_token;
+        }
+        $arrResult['strError']=$strError;
+        $arrResult['strToken']=$strResult;
+
+        if($arrResult['strError']){
+            $strError=true;
+        }
+        //********* STOP getting authorization token ***************//
+
 
         header('Content-Type: application/json');
         echo json_encode(array(
-            'result' =>$arrResult['strToken'],
+            'result' =>$arrResult['strName'],
+            'token'=>$arrResult['strToken'],
             'error' =>$strError
         ));
     }
