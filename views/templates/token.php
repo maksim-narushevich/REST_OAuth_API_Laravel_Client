@@ -64,7 +64,7 @@
             if(ajaxStatus) {
                 $.ajax({
                     method: 'POST',
-                    url: '/test_ajax',
+                    url: '/get_token_ajax',
                     data: {
                         strEmail: strEmail,
                         strPassword: strPass

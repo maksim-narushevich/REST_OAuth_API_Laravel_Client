@@ -9,4 +9,5 @@ $router->map('GET','/test', 'AjaxController#testMethod', 'testMethod');
 
 
 //-- Ajax routes
-$router->map('POST','/test_ajax', 'AjaxController#ajaxGetToken', 'ajaxGetToken');
+$router->map('POST','/get_token_ajax', 'AjaxController#ajaxGetToken', 'ajaxGetToken');
+$router->map('POST','/register_user_ajax', 'AjaxController#ajaxRegisterUser', 'ajaxRegisterUser');

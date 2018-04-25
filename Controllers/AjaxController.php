@@ -21,7 +21,6 @@ class AjaxController
      */
     public function ajaxGetToken(){
 
-
         $arrOptions=[
             'strEmail'=>$_POST['strEmail'],
             'strPassword'=>$_POST['strPassword'],
@@ -59,6 +58,59 @@ class AjaxController
 
         if($arrResult['strError']){
             $strError=true;
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode(array(
+            'result' =>$arrResult['strToken'],
+            'error' =>$strError
+        ));
+    }
+
+    /**
+     * ajaxGetToken
+     *
+     * @return void
+     */
+    public function ajaxRegisterUser(){
+
+        $arrOptions=[
+            'strName'=>$_POST['strName'],
+            'strEmail'=>$_POST['strEmail'],
+            'strPassword'=>$_POST['strPassword'],
+            'token'=>Config::$str_API_Token
+        ];
+
+
+        $curl = curl_init();
+        $arrResult=array();
+        $strError=false;
+        $strResult="";
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://larapassport.local/api/register",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"name\"\r\n\r\n".$arrOptions['strName']."\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"email\"\r\n\r\n".$arrOptions['strEmail']."\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"password\"\r\n\r\n".$arrOptions['strPassword']."\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"c_password\"\r\n\r\n".$arrOptions['strPassword']."\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+            CURLOPT_HTTPHEADER => array(
+                "Cache-Control: no-cache",
+                "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            $strError=true;
+        } else {
+            $arrResult['strToken']= $arrOptions['strName'];
         }
 
         header('Content-Type: application/json');
