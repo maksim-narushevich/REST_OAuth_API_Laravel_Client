@@ -30,4 +30,9 @@ class Config
      */
     public static $strTokenUrl = "http://larapassport.local/oauth/token";
 
+    /**
+     *  Default API token url
+     */
+    public static $strSubfolderRoute = "/restclient";
+
 }

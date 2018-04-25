@@ -16,6 +16,11 @@
         <div id="token_form">
             <h1>Register new user</h1>
             <div class="form-group">
+                <label for="email">Name:</label>
+                <input type="text" class="form-control" id="name">
+                <span id="name_error" style="color: red;display: none;"></span>
+            </div>
+            <div class="form-group">
                 <label for="email">Email address:</label>
                 <input type="email" class="form-control" id="email">
                 <span id="email_error" style="color: red;display: none;"></span>
@@ -40,33 +45,38 @@
 
 <script>
     $("#registerUser").click(function () {
-//        var strEmail=$('#email').val();
-//        var strPass=$('#pwd').val();
-//        $('#token_value').html("");
-//        $('#email_error,#pwd_error').hide();
-var strName='anton';
-var strEmail='anton@gmail.com';
-var strPassword='antonqwerty';
+        var strEmail=$('#email').val();
+        var strPassword=$('#pwd').val();
+        var strName=$('#name').val();
+        $('#token_value').html("");
+        $('#email_error,#pwd_error,#name_error').hide();
+
         var blnConfirm = confirm("Are you sure that inserted data is correct?");
         if (blnConfirm == true) {
-//            var ajaxStatus=true;
-//
-//            if( !strEmail) {
-//                ajaxStatus=false;
-//                $('#email_error').css('display', 'inline');
-//                $('#email_error').html("* Email field can not be empty!");
-//            }
-//
-//            if( !strPass) {
-//                ajaxStatus=false;
-//                $('#pwd_error').css('display', 'inline');
-//                $('#pwd_error').html("* Password field can not be empty!");
-//            }
+            var ajaxStatus=true;
 
-           // if(ajaxStatus) {
+            if( !strName) {
+                ajaxStatus=false;
+                $('#name_error').css('display', 'inline');
+                $('#name_error').html("* Name field can not be empty!");
+            }
+
+            if( !strEmail) {
+                ajaxStatus=false;
+                $('#email_error').css('display', 'inline');
+                $('#email_error').html("* Email field can not be empty!");
+            }
+
+            if( !strPassword) {
+                ajaxStatus=false;
+                $('#pwd_error').css('display', 'inline');
+                $('#pwd_error').html("* Password field can not be empty!");
+            }
+
+            if(ajaxStatus) {
                 $.ajax({
                     method: 'POST',
-                    url: '/register_user_ajax',
+                    url: '{{strSubfolderRoute}}/register_user_ajax',
                     data: {
                         strName: strName,
                         strEmail: strEmail,
@@ -84,16 +94,16 @@ var strPassword='antonqwerty';
 
                     }
                 });
-           // }
+          }
         }
     });
-//    $("#tryAgain").click(function () {
-//        $('#email,#pwd').val("");
-//        $('#token_form').show();
-//        $('#token_value').html("");
-//        $('#email_error,#pwd_error').hide();
-//        $('#token_button_try_again').css('display','none');
-//    });
+    $("#tryAgain").click(function () {
+        $('#email,#pwd').val("");
+        $('#token_form').show();
+        $('#token_value').html("");
+        $('#email_error,#pwd_error,#name_error').hide();
+        $('#token_button_try_again').css('display','none');
+    });
 </script>
 {% endblock %}
 

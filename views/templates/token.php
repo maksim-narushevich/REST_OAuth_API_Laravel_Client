@@ -60,11 +60,10 @@
                 $('#pwd_error').css('display', 'inline');
                 $('#pwd_error').html("* Password field can not be empty!");
             }
-
             if(ajaxStatus) {
                 $.ajax({
                     method: 'POST',
-                    url: '/get_token_ajax',
+                    url: '{{strSubfolderRoute}}/get_token_ajax',
                     data: {
                         strEmail: strEmail,
                         strPassword: strPass

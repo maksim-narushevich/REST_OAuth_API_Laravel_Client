@@ -11,12 +11,12 @@
 <h1>Home</h1>
 <div class="col-sm-12 col-xs-12">
     <div class="col-sm-6  col-xs-12" id="links">
-        <a href="/get-token" >Get authorization token</a><br>
+        <a href="{{strSubfolderRoute}}/get-token" >Get authorization token</a><br>
 
-        <a href="/register" >Register new user</a><br>
+        <a href="{{strSubfolderRoute}}/register" >Register new user</a><br>
 
-        <a href="/test" >Try API playground</a><br>
-        <a href="/test" >Check API documentation based on Swagger</a><br>
+        <a href="{{strSubfolderRoute}}/test" >Try API playground</a><br>
+        <a href="{{strSubfolderRoute}}/test" >Check API documentation based on Swagger</a><br>
     </div>
     </div>
 {% endblock %}

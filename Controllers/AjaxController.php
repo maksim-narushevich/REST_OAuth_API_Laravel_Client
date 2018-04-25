@@ -146,7 +146,8 @@ class AjaxController
         echo json_encode(array(
             'result' =>$arrResult['strName'],
             'token'=>$arrResult['strToken'],
-            'error' =>$strError
+            'error' =>$strError,
+            'errorMessage' =>$strError
         ));
     }
 
