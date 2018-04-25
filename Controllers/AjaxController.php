@@ -31,7 +31,7 @@ class AjaxController
         $strError=false;
         $strResult="";
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, Config::$strTokenUrl);
+        curl_setopt($ch, CURLOPT_URL, Config::$strTokenUrl.'/oauth/token');
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-Requested-With: XMLHttpRequest"));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
@@ -87,7 +87,7 @@ class AjaxController
         $strResult="";
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://larapassport.local/api/register",
+            CURLOPT_URL => Config::$strTokenUrl."/api/register",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,

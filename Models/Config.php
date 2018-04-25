@@ -28,7 +28,7 @@ class Config
     /**
      *  Default API token url
      */
-    public static $strTokenUrl = "http://larapassport.local/oauth/token";
+    public static $strTokenUrl = "http://larapassport.local";
 
     /**
      *  Default API token url
