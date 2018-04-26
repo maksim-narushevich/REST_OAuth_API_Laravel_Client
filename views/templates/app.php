@@ -14,6 +14,11 @@
 <body>
 <div class="row">
     <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+        <div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+            {% if home is not defined %}
+            <h1><a  class="btn btn-warning" href="{{strSubfolderRoute}}/">Home page</a></h1>
+            {% endif %}
+        </div>
         <div id="content">{% block content %}{% endblock %}</div>
         <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
             <div id="footer">

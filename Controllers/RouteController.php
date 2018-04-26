@@ -8,7 +8,8 @@ class RouteController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        echo $twig->render('home.php' , ['strSubfolderRoute' => $strSubfolderRoute]);
+        $home=true;
+        echo $twig->render('home.php' , ['strSubfolderRoute' => $strSubfolderRoute,'home'=>$home]);
     }
 
     public function register()
