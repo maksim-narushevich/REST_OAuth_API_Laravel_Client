@@ -13,7 +13,7 @@
 
 <div class="col-sm-12 col-xs-12">
     <div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
-        <div id="token_form">
+        <div id="register_form">
             <h1>Register new user</h1>
             <div class="form-group">
                 <label for="email">Name:</label>
@@ -35,8 +35,8 @@
         <div class="form-group" id="token_value">
 
         </div>
-        <div id="token_button_try_again" style="display: none;">
-            <button  class="btn btn-warning" id="tryAgain">Try again</button>
+        <div id="token_try_again" style="display: none;">
+            <a  class="btn btn-warning" href="{{strSubfolderRoute}}/get-token">Try again with other credentials</a>
         </div>
     </div>
 </div>
@@ -83,27 +83,22 @@
                         strPassword: strPassword
                     },
                     success: function (data) {
-                        console.log(data);
-//                        $('#token_form,#email_error,#pwd_error').hide();
-//                        $('#token_button_try_again').css('display', 'inline-block');
-//                        if (!data['error']) {
-//                            $('#token_value').html("<h1 style='text-weight:bold;'>This is your access token:</h1><p >" + data['result'] + "</p>");
-//                        } else {
-//                            $('#token_value').html("<p style='color:red;' class='w3-center'><img style='margin-top: 25px;'  height='200' src='http://www.heaven4netent.com/wp-content/uploads/2015/10/Sorry.jpg'><br>Provided login or password is not correct!</p>");
-//                        }
+                        $('#register_form,#email_error,#pwd_error').hide();
+                        $('#token_try_again').css('display', 'inline-block');
+                        if (!data['error']) {
+                            strName=strName.charAt(0).toUpperCase() + strName.slice(1);
+                            var strCredentialsBlock="<p><h1>Your credentials to access REST API</h1><br><b>Login:</b> "+strEmail+"<br><b>Password:</b> "+strPassword+"<br></p><br>";
+                            $('#token_value').html("<h1 style='color:green;'>"+strName+" thank you for registration!</h1><br>"+strCredentialsBlock+"<h2 style='text-weight:bold;'>This is your access token:</h2><p >" + data['token'] + "</p>");
+                        } else {
+                            $('#token_value').html("<p style='color:red;' class='w3-center'><img style='margin-top: 25px;'  height='200' src='http://www.heaven4netent.com/wp-content/uploads/2015/10/Sorry.jpg'><br>Provided login or password is not correct!</p>");
+                        }
 
                     }
                 });
           }
         }
     });
-    $("#tryAgain").click(function () {
-        $('#email,#pwd').val("");
-        $('#token_form').show();
-        $('#token_value').html("");
-        $('#email_error,#pwd_error,#name_error').hide();
-        $('#token_button_try_again').css('display','none');
-    });
+
 </script>
 {% endblock %}
 

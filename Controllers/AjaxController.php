@@ -113,7 +113,7 @@ class AjaxController
 
         //********* START getting authorization token ***************//
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, Config::$strTokenUrl);
+        curl_setopt($ch, CURLOPT_URL, Config::$strTokenUrl.'/oauth/token');
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-Requested-With: XMLHttpRequest"));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
