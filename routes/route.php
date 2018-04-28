@@ -9,6 +9,11 @@ $router->map('GET',$strSubfolderRoute.'/get-token/', 'RouteController#getToken',
 $router->map('GET',$strSubfolderRoute.'/register', 'RouteController#register', 'register');
 $router->map('GET',$strSubfolderRoute.'/register/', 'RouteController#register', 'register/');
 $router->map('GET',$strSubfolderRoute.'/test', 'AjaxController#testMethod', 'testMethod');
+$router->map('GET',$strSubfolderRoute.'/playground', 'PlaygroundController#index', 'playground');
+$router->map('GET',$strSubfolderRoute.'/playground/users', 'PlaygroundController#users', 'playground-users');
+$router->map('GET',$strSubfolderRoute.'/playground/movies', 'PlaygroundController#movies', 'playground-movies');
+$router->map('GET',$strSubfolderRoute.'/playground/books', 'PlaygroundController#books', 'playground-books');
+$router->map('GET',$strSubfolderRoute.'/playground/products', 'PlaygroundController#products', 'playground-products');
 
 
 //-- Ajax routes
