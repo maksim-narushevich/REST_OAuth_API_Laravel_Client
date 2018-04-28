@@ -15,19 +15,19 @@
 
         <ul>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Get all books</a>
+                <a href="{{strSubfolderRoute}}/playground/books/all" >Get all books</a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Get book by specific ID</a>
+                <a href="{{strSubfolderRoute}}/playground/books/id" >Get book by specific ID</a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Create new book </a>
+                <a href="{{strSubfolderRoute}}/playground/books/create" >Create new book </a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Update book by specific ID</a>
+                <a href="{{strSubfolderRoute}}/playground/books/update" >Update book by specific ID</a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Delete book by specific ID</a>
+                <a href="{{strSubfolderRoute}}/playground/books/delete" >Delete book by specific ID</a>
             </li>
         </ul>
     </div>
