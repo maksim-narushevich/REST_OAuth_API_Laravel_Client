@@ -61,7 +61,7 @@ class AjaxController
 
         header('Content-Type: application/json');
         echo json_encode(array(
-            'result' =>$arrResult['strToken'],
+            'result' =>"Bearer ".$arrResult['strToken'],
             'error' =>$strError
         ));
     }
@@ -145,7 +145,7 @@ class AjaxController
         header('Content-Type: application/json');
         echo json_encode(array(
             'result' =>$arrResult['strName'],
-            'token'=>$arrResult['strToken'],
+            'token'=>"Bearer ".$arrResult['strToken'],
             'error' =>$strError,
             'errorMessage' =>$strError
         ));

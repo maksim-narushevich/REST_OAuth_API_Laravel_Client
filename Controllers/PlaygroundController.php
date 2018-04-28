@@ -12,8 +12,7 @@ class PlaygroundController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $home=true;
-        echo $twig->render('playground.php' , ['strSubfolderRoute' => $strSubfolderRoute,'home'=>$home]);
+        echo $twig->render('playground.php' , ['strSubfolderRoute' => $strSubfolderRoute]);
     }
 
 
@@ -21,32 +20,36 @@ class PlaygroundController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $home=true;
-        echo $twig->render('books.php' , ['strSubfolderRoute' => $strSubfolderRoute,'home'=>$home]);
+        $playground=true;
+        $token=true;
+        echo $twig->render('books/books.php' , ['strSubfolderRoute' => $strSubfolderRoute,'playground'=>$playground,'token'=>$token]);
     }
 
     public function movies()
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $home=true;
-        echo $twig->render('movies.php' , ['strSubfolderRoute' => $strSubfolderRoute,'home'=>$home]);
+        $playground=true;
+        $token=true;
+        echo $twig->render('movies/movies.php' , ['strSubfolderRoute' => $strSubfolderRoute,'playground'=>$playground,'token'=>$token]);
     }
 
     public function users()
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $home=true;
-        echo $twig->render('users.php' , ['strSubfolderRoute' => $strSubfolderRoute,'home'=>$home]);
+        $playground=true;
+        $token=true;
+        echo $twig->render('users/users.php' , ['strSubfolderRoute' => $strSubfolderRoute,'playground'=>$playground,'token'=>$token]);
     }
 
     public function products()
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $home=true;
-        echo $twig->render('products.php' , ['strSubfolderRoute' => $strSubfolderRoute,'home'=>$home]);
+        $playground=true;
+        $token=true;
+        echo $twig->render('products/products.php' , ['strSubfolderRoute' => $strSubfolderRoute,'playground'=>$playground,'token'=>$token]);
     }
 
 }
