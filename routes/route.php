@@ -32,3 +32,4 @@ $router->map('GET',$strSubfolderRoute.'/playground/products', 'PlaygroundControl
 //-- Ajax routes
 $router->map('POST',$strSubfolderRoute.'/get_token_ajax', 'AjaxController#ajaxGetToken', 'ajaxGetToken');
 $router->map('POST',$strSubfolderRoute.'/register_user_ajax', 'AjaxController#ajaxRegisterUser', 'ajaxRegisterUser');
+$router->map('POST',$strSubfolderRoute.'/get_specific_item_user_ajax', 'AjaxController#ajaxGetSpecificItem', 'ajaxGetSpecificItem');
