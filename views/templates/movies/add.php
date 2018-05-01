@@ -135,10 +135,18 @@
                         intMovieCreatedYear: intMovieCreatedYear,
                         strToken: strToken
                     },
+                    beforeSend: function () {
+                        //-- Show loader image
+                        $("div#divLoading").addClass('show');
+                    },
                     success: function (data) {
                         console.log(data);
                         $('#register_form,#token_error,#id_error').hide();
                         $('#block_try_again').css('display', 'inline-block');
+
+                        //-- Remove loader image
+                        $("div#divLoading").removeClass('show');
+
                         if (!data['error']) {
 
                             function output(inp) {

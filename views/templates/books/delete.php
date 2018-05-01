@@ -100,9 +100,17 @@
                         intId: intId,
                         strToken: strToken
                     },
+                    beforeSend: function () {
+                        //-- Show loader image
+                        $("div#divLoading").addClass('show');
+                    },
                     success: function (data) {
                         $('#register_form,#token_error').hide();
                         $('#block_try_again,#deleted_item').css('display', 'inline-block');
+
+                        //-- Remove loader image
+                        $("div#divLoading").removeClass('show');
+
                         if (!data['error']) {
 
                             function output(inp) {

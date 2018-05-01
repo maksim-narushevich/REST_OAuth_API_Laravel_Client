@@ -39,6 +39,7 @@
             </div>
         </div>
     </div>
+    <div id="divLoading"></div>
 </div>
 
 <script src="{{strSubfolderRoute}}/public/js/script.js"></script>
