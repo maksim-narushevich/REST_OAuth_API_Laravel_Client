@@ -14,19 +14,19 @@
     <div class="col-sm-6  col-xs-12" id="links">
         <ul>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Get all products</a>
+                <a href="{{strSubfolderRoute}}/playground/products/all" >Get all products</a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Get product by specific ID</a>
+                <a href="{{strSubfolderRoute}}/playground/products/id" >Get product by specific ID</a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Create new product </a>
+                <a href="{{strSubfolderRoute}}/playground/products/create" >Create new product </a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Update product by specific ID</a>
+                <a href="{{strSubfolderRoute}}/playground/products/update" >Update product by specific ID</a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Delete product by specific ID</a>
+                <a href="{{strSubfolderRoute}}/playground/products/delete" >Delete product by specific ID</a>
             </li>
         </ul>
     </div>

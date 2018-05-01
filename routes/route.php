@@ -32,6 +32,11 @@ $router->map('GET',$strSubfolderRoute.'/playground/books/delete', 'BooksControll
 
 //-- Product's routes
 $router->map('GET',$strSubfolderRoute.'/playground/products', 'PlaygroundController#products', 'playground-products');
+$router->map('GET',$strSubfolderRoute.'/playground/products/all', 'ProductController#index', 'playground-products-all');
+$router->map('GET',$strSubfolderRoute.'/playground/products/id', 'ProductController#getSpecificProduct', 'playground-product-id');
+$router->map('GET',$strSubfolderRoute.'/playground/products/create', 'ProductController#create', 'playground-products-create');
+$router->map('GET',$strSubfolderRoute.'/playground/products/update', 'ProductController#update', 'playground-products-update');
+$router->map('GET',$strSubfolderRoute.'/playground/products/delete', 'ProductController#delete', 'playground-products-delete');
 
 
 //-- Ajax routes

@@ -96,7 +96,7 @@
         var intMovieCreatedYear=$('#movie_created_year').val();
         var strToken=$('#token').val();
         $('#request_value').html("");
-        $('#id_error,#token_error').hide();
+        $('#title_error,#detail_error,#token_error').hide();
 
         var blnConfirm = confirm("Are you sure that inserted data is correct?");
         if (blnConfirm == true) {
@@ -141,7 +141,7 @@
                     },
                     success: function (data) {
                         console.log(data);
-                        $('#register_form,#token_error,#id_error').hide();
+                        $('#register_form,#token_error,#title_error,#detail_error').hide();
                         $('#block_try_again').css('display', 'inline-block');
 
                         //-- Remove loader image

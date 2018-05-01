@@ -319,6 +319,14 @@ class AjaxController
             $strParams = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"title\"\r\n\r\n" . $arrParam['strTitle'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"detail\"\r\n\r\n" . $arrParam['strDetail'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"category_id\"\r\n\r\n" . $arrParam['intCategoryId'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"author\"\r\n\r\n" . $arrParam['strAuthor'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"finished_date\"\r\n\r\n" . $arrParam['intFinishedDate'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"movie_created_year\"\r\n\r\n" . $arrParam['intMovieCreatedYear'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--";
         }
 
+        if ($arrOptions['ajaxUrlType'] == 'products') {
+            $arrParam = [
+                'strName' => !empty($_POST['strName']) ? $_POST['strName'] : "",
+                'strDetail' => !empty($_POST['strDetail']) ? $_POST['strDetail'] : ""
+            ];
+            $strParams = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"name\"\r\n\r\n" . $arrParam['strName'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"detail\"\r\n\r\n" . $arrParam['strDetail'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--";
+        }
+
         curl_setopt_array($curl, array(
             CURLOPT_URL => Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType'],
             CURLOPT_RETURNTRANSFER => true,
@@ -420,6 +428,16 @@ class AjaxController
             $strParams .= "&category_id=" . $arrParam['intCategoryId'];
             $strParams .= "&finished_date=" . $arrParam['intFinishedDate'];
             $strParams .= "&movie_created_year=" . $arrParam['intMovieCreatedYear'];
+            $strParams = str_replace(" ", "%20", $strParams);
+        }
+
+        if ($arrOptions['ajaxUrlType'] == 'products') {
+            $arrParam = [
+                'strName' => !empty($_POST['strName']) ? $_POST['strName'] : "",
+                'strDetail' => !empty($_POST['strDetail']) ? $_POST['strDetail'] : ""
+            ];
+            $strParams = "name=" . $arrParam['strName'];
+            $strParams .= "&detail=" . $arrParam['strDetail'];
             $strParams = str_replace(" ", "%20", $strParams);
         }
 
