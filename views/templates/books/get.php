@@ -14,6 +14,12 @@
         font-size: 12px;
         font-weight: lighter;
     }
+    pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+    .string { color: green; }
+    .number { color: darkorange; }
+    .boolean { color: blue; }
+    .null { color: magenta; }
+    .key { color: red; }
 </style>
 {% endblock %}
 {% block content %}
@@ -39,8 +45,8 @@
         <div class="form-group" id="request_value">
 
         </div>
-        <div id="token_try_again" style="display: none;">
-            <a  class="btn btn-warning" href="{{strSubfolderRoute}}/get-token">Try again with other credentials</a>
+        <div id="block_try_again" style="display: none;">
+            <a  class="btn btn-warning" id="try_again">Try again</a>
         </div>
     </div>
 </div>
@@ -54,6 +60,11 @@
         }else{
             $("#from_input").text("");
         }
+    });
+    $("#try_again").click(function () {
+        $('#register_form').show();
+        $('#request_value').html("");
+        $('#block_try_again').css('display', 'none');
     });
     $("#execute").click(function () {
         var intId=$('#id').val();
@@ -88,18 +99,42 @@
                         strToken: strToken
                     },
                     success: function (data) {
-                        console.log(data);
+                        $('#register_form,#token_error,#id_error').hide();
+                        $('#block_try_again').css('display', 'inline-block');
+                        if (!data['error']) {
 
+                            function output(inp) {
+                                var request_value=document.getElementById("request_value");
+                                request_value.appendChild(document.createElement('pre')).innerHTML = inp;
+                            }
 
-                        // $('#register_form,#email_error,#pwd_error').hide();
-                        // $('#token_try_again').css('display', 'inline-block');
-                        // if (!data['error']) {
-                        //     strName=strName.charAt(0).toUpperCase() + strName.slice(1);
-                        //     var strCredentialsBlock="<p><h1>Your credentials to access REST API</h1><br><b>Login:</b> "+strEmail+"<br><b>Password:</b> "+strPassword+"<br></p><br>";
-                        //     $('#token_value').html("<h1 style='color:green;'>"+strName+" thank you for registration!</h1><br>"+strCredentialsBlock+"<h2 style='text-weight:bold;'>This is your access token:</h2><p >" + data['token'] + "</p>");
-                        // } else {
-                        //     $('#token_value').html("<p style='color:red;' class='w3-center'><img style='margin-top: 25px;'  height='200' src='http://www.heaven4netent.com/wp-content/uploads/2015/10/Sorry.jpg'><br>Provided login or password is not correct!</p>");
-                        // }
+                            function syntaxHighlight(json) {
+                                json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                                return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                                    var cls = 'number';
+                                    if (/^"/.test(match)) {
+                                        if (/:$/.test(match)) {
+                                            cls = 'key';
+                                        } else {
+                                            cls = 'string';
+                                        }
+                                    } else if (/true|false/.test(match)) {
+                                        cls = 'boolean';
+                                    } else if (/null/.test(match)) {
+                                        cls = 'null';
+                                    }
+                                    return '<span class="' + cls + '">' + match + '</span>';
+                                });
+                            }
+
+                            //var obj = {a:1, 'b':'foo', c:[false,'false',null, 'null', {d:{e:1.3e5,f:'1.3e5'}}]};
+                            var str = JSON.stringify(data['result'], undefined, 4);
+
+                            //output(str);
+                            output(syntaxHighlight(str));
+                        } else {
+                            $('#request_value').html("<p style='color:red;' class='w3-center'><img style='margin-top: 25px;'  height='200' src='http://www.heaven4netent.com/wp-content/uploads/2015/10/Sorry.jpg'><br>Provided token or ID is not correct!</p>");
+                        }
 
                     }
                 });

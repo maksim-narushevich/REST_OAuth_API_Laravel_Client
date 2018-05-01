@@ -33,3 +33,6 @@ $router->map('GET',$strSubfolderRoute.'/playground/products', 'PlaygroundControl
 $router->map('POST',$strSubfolderRoute.'/get_token_ajax', 'AjaxController#ajaxGetToken', 'ajaxGetToken');
 $router->map('POST',$strSubfolderRoute.'/register_user_ajax', 'AjaxController#ajaxRegisterUser', 'ajaxRegisterUser');
 $router->map('POST',$strSubfolderRoute.'/get_specific_item_user_ajax', 'AjaxController#ajaxGetSpecificItem', 'ajaxGetSpecificItem');
+$router->map('POST',$strSubfolderRoute.'/get_all_items_user_ajax', 'AjaxController#ajaxGetItems', 'ajaxGetItems');
+$router->map('POST',$strSubfolderRoute.'/create_item_user_ajax', 'AjaxController#ajaxAddItem', 'ajaxAddItem');
+$router->map('POST',$strSubfolderRoute.'/update_item_user_ajax', 'AjaxController#ajaxEditItem', 'ajaxEditItem');

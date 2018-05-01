@@ -12,7 +12,7 @@ class BooksController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $strBaseAPI_URL=Config::$strTokenUrl.Config::$strSubfolderRoute;
+        $strBaseAPI_URL=Config::$strTokenUrl.Config::$strSubfolderRoute.'/api/v1/books/';
         $playground=true;
         $token=true;
         echo $twig->render('books/get_all.php' , [
@@ -42,18 +42,30 @@ class BooksController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
+        $strBaseAPI_URL=Config::$strTokenUrl.'/api/v1/books/';
         $playground=true;
         $token=true;
-        echo $twig->render('books/add.php' , ['strSubfolderRoute' => $strSubfolderRoute,'playground'=>$playground,'token'=>$token]);
+        echo $twig->render('books/add.php' , [
+            'strSubfolderRoute' => $strSubfolderRoute,
+            'playground'=>$playground,
+            'token'=>$token,
+            'strBaseAPI_URL'=>$strBaseAPI_URL
+        ]);
     }
 
     public function update()
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
+        $strBaseAPI_URL=Config::$strTokenUrl.Config::$strSubfolderRoute.'/api/v1/books/';
         $playground=true;
         $token=true;
-        echo $twig->render('books/edit.php' , ['strSubfolderRoute' => $strSubfolderRoute,'playground'=>$playground,'token'=>$token]);
+        echo $twig->render('books/edit.php' , [
+            'strSubfolderRoute' => $strSubfolderRoute,
+            'playground'=>$playground,
+            'token'=>$token,
+            'strBaseAPI_URL'=>$strBaseAPI_URL
+        ]);
     }
 
     public function delete()
