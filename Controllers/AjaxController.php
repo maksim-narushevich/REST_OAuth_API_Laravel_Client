@@ -307,6 +307,18 @@ class AjaxController
             $strParams = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"title\"\r\n\r\n" . $arrParam['strTitle'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"detail\"\r\n\r\n" . $arrParam['strDetail'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"category_id\"\r\n\r\n" . $arrParam['intCategoryId'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"author\"\r\n\r\n" . $arrParam['strAuthor'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"date\"\r\n\r\n" . $arrParam['intDate'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"publish_year\"\r\n\r\n" . $arrParam['intPublishYear'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--";
         }
 
+        if ($arrOptions['ajaxUrlType'] == 'movies') {
+            $arrParam = [
+                'strTitle' => !empty($_POST['strTitle']) ? $_POST['strTitle'] : "",
+                'strDetail' => !empty($_POST['strDetail']) ? $_POST['strDetail'] : "",
+                'strAuthor' => !empty($_POST['strAuthor']) ? $_POST['strAuthor'] : "",
+                'intCategoryId' => !empty($_POST['intCategoryId']) ? $_POST['intCategoryId'] : "",
+                'intFinishedDate' => !empty($_POST['intFinishedDate']) ? $_POST['intFinishedDate'] : "",
+                'intMovieCreatedYear' => !empty($_POST['intMovieCreatedYear']) ? $_POST['intMovieCreatedYear'] : ""
+            ];
+            $strParams = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"title\"\r\n\r\n" . $arrParam['strTitle'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"detail\"\r\n\r\n" . $arrParam['strDetail'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"category_id\"\r\n\r\n" . $arrParam['intCategoryId'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"author\"\r\n\r\n" . $arrParam['strAuthor'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"finished_date\"\r\n\r\n" . $arrParam['intFinishedDate'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"movie_created_year\"\r\n\r\n" . $arrParam['intMovieCreatedYear'] . "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--";
+        }
+
         curl_setopt_array($curl, array(
             CURLOPT_URL => Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType'],
             CURLOPT_RETURNTRANSFER => true,
@@ -390,6 +402,24 @@ class AjaxController
             $strParams .= "&category_id=" . $arrParam['intCategoryId'];
             $strParams .= "&date=" . $arrParam['intDate'];
             $strParams .= "&publish_year=" . $arrParam['intPublishYear'];
+            $strParams = str_replace(" ", "%20", $strParams);
+        }
+
+        if ($arrOptions['ajaxUrlType'] == 'movies') {
+            $arrParam = [
+                'strTitle' => !empty($_POST['strTitle']) ? $_POST['strTitle'] : "",
+                'strDetail' => !empty($_POST['strDetail']) ? $_POST['strDetail'] : "",
+                'strAuthor' => !empty($_POST['strAuthor']) ? $_POST['strAuthor'] : "",
+                'intCategoryId' => !empty($_POST['intCategoryId']) ? $_POST['intCategoryId'] : "",
+                'intFinishedDate' => !empty($_POST['intFinishedDate']) ? $_POST['intFinishedDate'] : "",
+                'intMovieCreatedYear' => !empty($_POST['intMovieCreatedYear']) ? $_POST['intMovieCreatedYear'] : ""
+            ];
+            $strParams = "title=" . $arrParam['strTitle'];
+            $strParams .= "&detail=" . $arrParam['strDetail'];
+            $strParams .= "&author=" . $arrParam['strAuthor'];
+            $strParams .= "&category_id=" . $arrParam['intCategoryId'];
+            $strParams .= "&finished_date=" . $arrParam['intFinishedDate'];
+            $strParams .= "&movie_created_year=" . $arrParam['intMovieCreatedYear'];
             $strParams = str_replace(" ", "%20", $strParams);
         }
 

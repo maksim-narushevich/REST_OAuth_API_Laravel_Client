@@ -133,7 +133,7 @@
                             //output(str);
                             output(syntaxHighlight(str));
                         } else {
-                            $('#request_value').html("<p style='color:red;' class='w3-center'><img style='margin-top: 25px;'  height='200' src='http://www.heaven4netent.com/wp-content/uploads/2015/10/Sorry.jpg'><br>Provided token or ID is not correct!</p>");
+                            $('#request_value').html("<p style='color:red;' class='w3-center'><img style='margin-top: 25px;'  height='200' src='http://www.heaven4netent.com/wp-content/uploads/2015/10/Sorry.jpg'><br>Provided token or ID is not correct!</p><p>"+data['errorMessage']+"</p>");
                         }
 
                     }

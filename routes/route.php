@@ -16,6 +16,11 @@ $router->map('GET',$strSubfolderRoute.'/playground/users', 'PlaygroundController
 
 //-- Movies's routes
 $router->map('GET',$strSubfolderRoute.'/playground/movies', 'PlaygroundController#movies', 'playground-movies');
+$router->map('GET',$strSubfolderRoute.'/playground/movies/all', 'MovieController#index', 'playground-movies-all');
+$router->map('GET',$strSubfolderRoute.'/playground/movies/id', 'MovieController#getSpecificMovies', 'playground-movie-id');
+$router->map('GET',$strSubfolderRoute.'/playground/movies/create', 'MovieController#create', 'playground-movies-create');
+$router->map('GET',$strSubfolderRoute.'/playground/movies/update', 'MovieController#update', 'playground-movies-update');
+$router->map('GET',$strSubfolderRoute.'/playground/movies/delete', 'MovieController#delete', 'playground-movies-delete');
 
 //-- Book's routes
 $router->map('GET',$strSubfolderRoute.'/playground/books', 'PlaygroundController#books', 'playground-books');
