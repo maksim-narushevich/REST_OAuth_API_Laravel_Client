@@ -82,9 +82,17 @@
                         strEmail: strEmail,
                         strPassword: strPassword
                     },
+                    beforeSend: function () {
+                        //-- Show loader image
+                        $("div#divLoading").addClass('show');
+                    },
                     success: function (data) {
                         $('#register_form,#email_error,#pwd_error').hide();
                         $('#token_try_again').css('display', 'inline-block');
+
+                        //-- Remove loader image
+                        $("div#divLoading").removeClass('show');
+
                         if (!data['error']) {
                             strName=strName.charAt(0).toUpperCase() + strName.slice(1);
                             var strCredentialsBlock="<p><h1>Your credentials to access REST API</h1><br><b>Login:</b> "+strEmail+"<br><b>Password:</b> "+strPassword+"<br></p><br>";

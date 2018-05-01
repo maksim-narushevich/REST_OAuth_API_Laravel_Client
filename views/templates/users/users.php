@@ -14,22 +14,22 @@
     <div class="col-sm-6  col-xs-12" id="links">
         <ul>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Get all users</a>
+                <a href="{{strSubfolderRoute}}/playground/users/all" >Get all users</a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Get user by specific ID</a>
+                <a href="{{strSubfolderRoute}}/playground/users/id" >Get user by specific ID</a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Update user by specific ID</a>
+                <a href="{{strSubfolderRoute}}/playground/users/update" >Update user by specific ID</a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Delete user by specific ID</a>
+                <a href="{{strSubfolderRoute}}/playground/users/delete" >Delete user by specific ID</a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Get all books from specific user </a>
+                <a href="{{strSubfolderRoute}}/playground/users/books" >Get all books from specific user </a>
             </li>
             <li>
-                <a href="{{strSubfolderRoute}}/get-token" >Get all movies from specific user</a>
+                <a href="{{strSubfolderRoute}}/playground/users/movies" >Get all movies from specific user</a>
             </li>
         </ul>
     </div>

@@ -87,6 +87,7 @@
                         $("div#divLoading").addClass('show');
                     },
                     success: function (data) {
+                        console.log(data);
                         $('#register_form,#token_error').hide();
                         $('#block_try_again').css('display', 'inline-block');
 

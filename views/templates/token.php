@@ -68,9 +68,17 @@
                         strEmail: strEmail,
                         strPassword: strPass
                     },
+                    beforeSend: function () {
+                        //-- Show loader image
+                        $("div#divLoading").addClass('show');
+                    },
                     success: function (data) {
                         $('#token_form,#email_error,#pwd_error').hide();
                         $('#token_button_try_again').css('display', 'inline-block');
+
+                        //-- Remove loader image
+                        $("div#divLoading").removeClass('show');
+
                         if (!data['error']) {
                             $('#token_value').html("<h1 style='text-weight:bold;'>This is your access token:</h1><p >" + data['result'] + "</p>");
                         } else {

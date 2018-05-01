@@ -13,6 +13,12 @@ $router->map('GET',$strSubfolderRoute.'/playground', 'PlaygroundController#index
 
 //--User's routes
 $router->map('GET',$strSubfolderRoute.'/playground/users', 'PlaygroundController#users', 'playground-users');
+$router->map('GET',$strSubfolderRoute.'/playground/users/all', 'UserController#index', 'playground-users-all');
+$router->map('GET',$strSubfolderRoute.'/playground/users/id', 'UserController#getSpecificUser', 'playground-user-id');
+$router->map('GET',$strSubfolderRoute.'/playground/users/update', 'UserController#update', 'playground-users-update');
+$router->map('GET',$strSubfolderRoute.'/playground/users/delete', 'UserController#delete', 'playground-users-delete');
+$router->map('GET',$strSubfolderRoute.'/playground/users/books', 'UserController#books', 'playground-users-books');
+$router->map('GET',$strSubfolderRoute.'/playground/users/movies', 'UserController#movies', 'playground-users-movies');
 
 //-- Movies's routes
 $router->map('GET',$strSubfolderRoute.'/playground/movies', 'PlaygroundController#movies', 'playground-movies');
@@ -47,3 +53,5 @@ $router->map('POST',$strSubfolderRoute.'/get_all_items_user_ajax', 'AjaxControll
 $router->map('POST',$strSubfolderRoute.'/create_item_user_ajax', 'AjaxController#ajaxAddItem', 'ajaxAddItem');
 $router->map('POST',$strSubfolderRoute.'/update_item_user_ajax', 'AjaxController#ajaxEditItem', 'ajaxEditItem');
 $router->map('POST',$strSubfolderRoute.'/delete_item_user_ajax', 'AjaxController#ajaxDeleteItem', 'ajaxDeleteItem');
+$router->map('POST',$strSubfolderRoute.'/get_books_user_ajax', 'AjaxController#ajaxGetUserBooks', 'ajaxGetUserBooks');
+$router->map('POST',$strSubfolderRoute.'/get_movies_user_ajax', 'AjaxController#ajaxGetUserMovies', 'ajaxGetUserMovies');

@@ -441,6 +441,16 @@ class AjaxController
             $strParams = str_replace(" ", "%20", $strParams);
         }
 
+        if ($arrOptions['ajaxUrlType'] == 'users') {
+            $arrParam = [
+                'strName' => !empty($_POST['strName']) ? $_POST['strName'] : "",
+                'strEmail' => !empty($_POST['strEmail']) ? $_POST['strEmail'] : ""
+            ];
+            $strParams = "name=" . $arrParam['strName'];
+            $strParams .= "&email=" . $arrParam['strEmail'];
+            $strParams = str_replace(" ", "%20", $strParams);
+        }
+
 
         $curl = curl_init();
 
@@ -558,5 +568,131 @@ class AjaxController
         ));
     }
 
+
+    /**
+     * ajaxGetUserBooks
+     *
+     * @return void
+     */
+    public function ajaxGetUserBooks()
+    {
+
+        $arrOptions = [
+            'ajaxUrlType' => $_POST['ajaxUrlType'],
+            'intId' => $_POST['intId'],
+            'strToken' => $_POST['strToken'],
+            'token' => Config::$str_API_Token
+        ];
+
+
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_URL, Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType'] . "/" . $arrOptions['intId'] . "/books");
+        curl_setopt($curl, CURLOPT_HTTPGET, 1);
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = [
+            "Authorization:Bearer {$arrOptions['strToken']}",
+            'Accept: application/json'
+        ];
+
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        $strResult = "";
+        $strErrorMesage = "";
+        $strError = false;
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            $strErrorMesage = $err;
+
+            $strError = true;
+        } else {
+            $arrResult = json_decode($response, true);
+            if (isset($arrResult["success"]) && $arrResult["success"]) {
+                $strResult = $arrResult['data'];
+            } else {
+                $strError = true;
+                $strErrorMesage = $arrResult['message'];
+            }
+
+        }
+        //********* STOP getting authorization token ***************//
+
+        header('Content-Type: application/json');
+        echo json_encode(array(
+            'result' => $strResult,
+            'error' => $strError,
+            'errorMessage' => $strErrorMesage
+        ));
+
+    }
+
+    /**
+     * ajaxGetUserMovies
+     *
+     * @return void
+     */
+    public function ajaxGetUserMovies()
+    {
+
+        $arrOptions = [
+            'ajaxUrlType' => $_POST['ajaxUrlType'],
+            'intId' => $_POST['intId'],
+            'strToken' => $_POST['strToken'],
+            'token' => Config::$str_API_Token
+        ];
+
+
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_URL, Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType'] . "/" . $arrOptions['intId'] . "/movies");
+        curl_setopt($curl, CURLOPT_HTTPGET, 1);
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = [
+            "Authorization:Bearer {$arrOptions['strToken']}",
+            'Accept: application/json'
+        ];
+
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        $strResult = "";
+        $strErrorMesage = "";
+        $strError = false;
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            $strErrorMesage = $err;
+
+            $strError = true;
+        } else {
+            $arrResult = json_decode($response, true);
+            if (isset($arrResult["success"]) && $arrResult["success"]) {
+                $strResult = $arrResult['data'];
+            } else {
+                $strError = true;
+                $strErrorMesage = $arrResult['message'];
+            }
+
+        }
+        //********* STOP getting authorization token ***************//
+
+        header('Content-Type: application/json');
+        echo json_encode(array(
+            'result' => $strResult,
+            'error' => $strError,
+            'errorMessage' => $strErrorMesage
+        ));
+
+    }
 
 }

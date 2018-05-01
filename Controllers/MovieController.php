@@ -12,7 +12,7 @@ class MovieController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $strBaseAPI_URL=Config::$strTokenUrl.Config::$strSubfolderRoute.'/api/v1/movies/';
+        $strBaseAPI_URL=Config::$strTokenUrl.'/api/v1/movies/';
         $playground=true;
         $token=true;
         echo $twig->render('movies/get_all.php' , [
@@ -57,7 +57,7 @@ class MovieController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $strBaseAPI_URL=Config::$strTokenUrl.Config::$strSubfolderRoute.'/api/v1/movies/';
+        $strBaseAPI_URL=Config::$strTokenUrl.'/api/v1/movies/';
         $playground=true;
         $token=true;
         echo $twig->render('movies/edit.php' , [
@@ -72,7 +72,7 @@ class MovieController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $strBaseAPI_URL=Config::$strTokenUrl.Config::$strSubfolderRoute.'/api/v1/movies/';
+        $strBaseAPI_URL=Config::$strTokenUrl.'/api/v1/movies/';
         $playground=true;
         $token=true;
         echo $twig->render('movies/delete.php' , [

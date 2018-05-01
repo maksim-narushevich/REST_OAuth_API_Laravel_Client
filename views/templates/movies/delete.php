@@ -42,7 +42,7 @@
             </div>
             <button class="btn btn-success" id="execute">Execute</button>
         </div>
-        <div class="form-group" id="deleted_item" style="display: none;">Item was successfully daleted!</div>
+        <div class="form-group" id="deleted_item" style="display: none;">Item was successfully deleted!</div>
         <div class="form-group" id="request_value">
 
         </div>

@@ -12,7 +12,7 @@ class ProductController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $strBaseAPI_URL=Config::$strTokenUrl.Config::$strSubfolderRoute.'/api/v1/products/';
+        $strBaseAPI_URL=Config::$strTokenUrl.'/api/v1/products/';
         $playground=true;
         $token=true;
         echo $twig->render('products/get_all.php' , [
@@ -57,7 +57,7 @@ class ProductController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $strBaseAPI_URL=Config::$strTokenUrl.Config::$strSubfolderRoute.'/api/v1/products/';
+        $strBaseAPI_URL=Config::$strTokenUrl.'/api/v1/products/';
         $playground=true;
         $token=true;
         echo $twig->render('products/edit.php' , [
@@ -72,7 +72,7 @@ class ProductController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
-        $strBaseAPI_URL=Config::$strTokenUrl.Config::$strSubfolderRoute.'/api/v1/products/';
+        $strBaseAPI_URL=Config::$strTokenUrl.'/api/v1/products/';
         $playground=true;
         $token=true;
         echo $twig->render('products/delete.php' , [

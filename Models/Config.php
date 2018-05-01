@@ -28,6 +28,7 @@ class Config
     /**
      *  Default API token url
      */
+    //public static $strTokenUrl = "http://www.discoveringworld.net/restclient";
     public static $strTokenUrl = "http://larapassport.local";
 
     /**
