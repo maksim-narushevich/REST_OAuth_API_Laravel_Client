@@ -72,8 +72,14 @@ class BooksController
     {
         $twig = Config::$twig;
         $strSubfolderRoute=Config::$strSubfolderRoute;
+        $strBaseAPI_URL=Config::$strTokenUrl.Config::$strSubfolderRoute.'/api/v1/books/';
         $playground=true;
         $token=true;
-        echo $twig->render('books/delete.php' , ['strSubfolderRoute' => $strSubfolderRoute,'playground'=>$playground,'token'=>$token]);
+        echo $twig->render('books/delete.php' , [
+            'strSubfolderRoute' => $strSubfolderRoute,
+            'playground'=>$playground,
+            'token'=>$token,
+            'strBaseAPI_URL'=>$strBaseAPI_URL
+        ]);
     }
 }

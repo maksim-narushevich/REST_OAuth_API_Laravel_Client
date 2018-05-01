@@ -36,3 +36,4 @@ $router->map('POST',$strSubfolderRoute.'/get_specific_item_user_ajax', 'AjaxCont
 $router->map('POST',$strSubfolderRoute.'/get_all_items_user_ajax', 'AjaxController#ajaxGetItems', 'ajaxGetItems');
 $router->map('POST',$strSubfolderRoute.'/create_item_user_ajax', 'AjaxController#ajaxAddItem', 'ajaxAddItem');
 $router->map('POST',$strSubfolderRoute.'/update_item_user_ajax', 'AjaxController#ajaxEditItem', 'ajaxEditItem');
+$router->map('POST',$strSubfolderRoute.'/delete_item_user_ajax', 'AjaxController#ajaxDeleteItem', 'ajaxDeleteItem');

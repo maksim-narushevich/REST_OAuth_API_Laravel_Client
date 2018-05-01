@@ -384,20 +384,20 @@ class AjaxController
                 'intDate' => !empty($_POST['intDate']) ? $_POST['intDate'] : "",
                 'intPublishYear' => !empty($_POST['intPublishYear']) ? $_POST['intPublishYear'] : ""
             ];
-            $strParams = "title=".$arrParam['strTitle'];
-            $strParams .= "&detail=".$arrParam['strDetail'];
-            $strParams .= "&author=".$arrParam['strAuthor'];
-            $strParams .= "&category_id=".$arrParam['intCategoryId'];
-            $strParams .= "&date=".$arrParam['intDate'];
-            $strParams .= "&publish_year=".$arrParam['intPublishYear'];
-            $strParams = str_replace(" ", "%20",$strParams);
+            $strParams = "title=" . $arrParam['strTitle'];
+            $strParams .= "&detail=" . $arrParam['strDetail'];
+            $strParams .= "&author=" . $arrParam['strAuthor'];
+            $strParams .= "&category_id=" . $arrParam['intCategoryId'];
+            $strParams .= "&date=" . $arrParam['intDate'];
+            $strParams .= "&publish_year=" . $arrParam['intPublishYear'];
+            $strParams = str_replace(" ", "%20", $strParams);
         }
 
 
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType']."/".$arrOptions['intId']."?".$strParams,
+            CURLOPT_URL => Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType'] . "/" . $arrOptions['intId'] . "?" . $strParams,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -420,6 +420,71 @@ class AjaxController
 
         curl_close($curl);
 
+
+        if ($err) {
+            $strErrorMesage = $err;
+
+            $strError = true;
+        } else {
+            $arrResult = json_decode($response, true);
+            if (isset($arrResult["success"]) && $arrResult["success"]) {
+                $strResult = $arrResult['data'];
+            } else {
+                $strError = true;
+                $strErrorMesage = $arrResult['message'];
+            }
+
+        }
+        //********* STOP getting authorization token ***************//
+
+        header('Content-Type: application/json');
+        echo json_encode(array(
+            'result' => $strResult,
+            'error' => $strError,
+            'errorMessage' => $strErrorMesage
+        ));
+    }
+
+    /**
+     * ajaxDeleteItem
+     *
+     * @return void
+     */
+    public function ajaxDeleteItem()
+    {
+
+        $arrOptions = [
+            'ajaxUrlType' => $_POST['ajaxUrlType'],
+            'intId' => $_POST['intId'],
+            'strToken' => $_POST['strToken'],
+            'token' => Config::$str_API_Token
+        ];
+
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType'] . "/" . $arrOptions['intId'],
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "DELETE",
+            CURLOPT_HTTPHEADER => array(
+                "Accept: application/json",
+                "Authorization: Bearer {$arrOptions['strToken']}",
+                "Cache-Control: no-cache"
+            ),
+        ));
+
+        $strResult = "";
+        $strErrorMesage = "";
+        $strError = false;
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
 
         if ($err) {
             $strErrorMesage = $err;
