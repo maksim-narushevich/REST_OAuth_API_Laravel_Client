@@ -32,7 +32,7 @@
             <h3>Base API URL is:</h3> {{strBaseAPI_URL}}<span id="from_input"></span><hr>
             <div class="form-group">
                 <label for="id">ID: <span class="warn">(Only numbers are allowed)</span></label>
-                <input type="text" class="form-control" id="id" onkeypress="return isNumberKey(event);">
+                <input type="number" class="form-control" id="id" onkeypress="return isNumberKey(event);">
                 <span id="id_error" style="color: red;display: none;"></span>
             </div>
             <div class="form-group">

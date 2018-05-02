@@ -30,7 +30,14 @@
 
         <div id="register_form">
             <h3>Base API URL is:</h3> {{strBaseAPI_URL}}<hr>
-
+            <div class="form-group">
+                <label for="offset">Offset: <span class="warn">(Only numbers are allowed)</span></label>
+                <input type="number" class="form-control" id="offset" onkeypress="return isNumberKey(event);">
+            </div>
+            <div class="form-group">
+                <label for="limit">Limit: <span class="warn">(Only numbers are allowed)</span></label>
+                <input type="number" class="form-control" id="limit" onkeypress="return isNumberKey(event);">
+            </div>
             <div class="form-group">
                 <label for="token">Token:</label>
                 <textarea id="token" class="form-control"></textarea>
@@ -58,6 +65,8 @@
     });
     $("#execute").click(function () {
         var intId=$('#id').val();
+        var intOffset=$('#offset').val();
+        var intLimit=$('#limit').val();
         var strToken=$('#token').val();
         $('#request_value').html("");
         $('#token_error').hide();
@@ -80,6 +89,8 @@
                     data: {
                         ajaxUrlType: 'books',
                         intId: intId,
+                        intOffset:intOffset,
+                        intLimit:intLimit,
                         strToken: strToken
                     },
                     beforeSend: function () {
@@ -133,7 +144,14 @@
             }
         }
     });
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode < 48 || charCode > 57)
+            return false;
 
+        return true;
+    }
 </script>
 
 {% endblock %}

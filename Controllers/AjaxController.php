@@ -228,13 +228,24 @@ class AjaxController
         $arrOptions = [
             'ajaxUrlType' => $_POST['ajaxUrlType'],
             'strToken' => $_POST['strToken'],
+            'intOffset' => $_POST['intOffset'],
+            'intLimit' => $_POST['intLimit'],
             'token' => Config::$str_API_Token
         ];
 
-
+        $strLimit="";
         $curl = curl_init();
+        if($arrOptions['intOffset']>=0 && is_numeric($arrOptions['intOffset'])){
+            if($arrOptions['intLimit']>0 && is_numeric($arrOptions['intLimit'])){
+                $strLimit="/".$arrOptions['intOffset']."/".$arrOptions['intLimit'];
+            }elseif ($arrOptions['intLimit']==0 && is_numeric($arrOptions['intLimit'])){
+                $strLimit="/".$arrOptions['intOffset'];
+            }else{
+                $strLimit="/".$arrOptions['intOffset'];
+            }
+        }
 
-        curl_setopt($curl, CURLOPT_URL, Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType']);
+        curl_setopt($curl, CURLOPT_URL, Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType']."/list".$strLimit);
         curl_setopt($curl, CURLOPT_HTTPGET, 1);
 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
