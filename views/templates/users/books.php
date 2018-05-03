@@ -36,6 +36,14 @@
                 <span id="id_error" style="color: red;display: none;"></span>
             </div>
             <div class="form-group">
+                <label for="offset">Offset: <span class="warn">(Only numbers are allowed)</span></label>
+                <input type="number" class="form-control" id="offset" onkeypress="return isNumberKey(event);">
+            </div>
+            <div class="form-group">
+                <label for="limit">Limit: <span class="warn">(Only numbers are allowed)</span></label>
+                <input type="number" class="form-control" id="limit" onkeypress="return isNumberKey(event);">
+            </div>
+            <div class="form-group">
                 <label for="token">Token:</label>
                 <textarea id="token" class="form-control"></textarea>
                 <span id="token_error" style="color: red;display: none;"></span>
@@ -68,6 +76,8 @@
     });
     $("#execute").click(function () {
         var intId=$('#id').val();
+        var intOffset=$('#offset').val();
+        var intLimit=$('#limit').val();
         var strToken=$('#token').val();
         $('#request_value').html("");
         $('#id_error,#token_error').hide();
@@ -96,6 +106,8 @@
                     data: {
                         ajaxUrlType: 'users',
                         intId: intId,
+                        intOffset:intOffset,
+                        intLimit:intLimit,
                         strToken: strToken
                     },
                     beforeSend: function () {

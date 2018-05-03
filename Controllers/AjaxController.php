@@ -234,12 +234,17 @@ class AjaxController
         ];
 
         $strLimit="";
+
+        if(empty($arrOptions['intOffset'])){
+            $arrOptions['intOffset']=0;
+        }
+
         $curl = curl_init();
         if($arrOptions['intOffset']>=0 && is_numeric($arrOptions['intOffset'])){
             if($arrOptions['intLimit']>0 && is_numeric($arrOptions['intLimit'])){
                 $strLimit="/".$arrOptions['intOffset']."/".$arrOptions['intLimit'];
             }elseif ($arrOptions['intLimit']==0 && is_numeric($arrOptions['intLimit'])){
-                $strLimit="/".$arrOptions['intOffset'];
+                $strLimit="/".$arrOptions['intOffset']."/".$arrOptions['intLimit'];
             }else{
                 $strLimit="/".$arrOptions['intOffset'];
             }
@@ -591,14 +596,30 @@ class AjaxController
         $arrOptions = [
             'ajaxUrlType' => $_POST['ajaxUrlType'],
             'intId' => $_POST['intId'],
+            'intOffset' => $_POST['intOffset'],
+            'intLimit' => $_POST['intLimit'],
             'strToken' => $_POST['strToken'],
             'token' => Config::$str_API_Token
         ];
 
 
+        $strLimit="";
         $curl = curl_init();
 
-        curl_setopt($curl, CURLOPT_URL, Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType'] . "/" . $arrOptions['intId'] . "/books");
+        if(empty($arrOptions['intOffset'])){
+            $arrOptions['intOffset']=0;
+        }
+
+        if($arrOptions['intOffset']>=0 && is_numeric($arrOptions['intOffset'])){
+            if($arrOptions['intLimit']>0 && is_numeric($arrOptions['intLimit'])){
+                $strLimit="/".$arrOptions['intOffset']."/".$arrOptions['intLimit'];
+            }elseif ($arrOptions['intLimit']==0 && is_numeric($arrOptions['intLimit'])){
+                $strLimit="/".$arrOptions['intOffset']."/".$arrOptions['intLimit'];
+            }else{
+                $strLimit="/".$arrOptions['intOffset'];
+            }
+        }
+        curl_setopt($curl, CURLOPT_URL, Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType'] . "/" . $arrOptions['intId'] . "/books".$strLimit);
         curl_setopt($curl, CURLOPT_HTTPGET, 1);
 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -654,14 +675,29 @@ class AjaxController
         $arrOptions = [
             'ajaxUrlType' => $_POST['ajaxUrlType'],
             'intId' => $_POST['intId'],
+            'intOffset' => $_POST['intOffset'],
+            'intLimit' => $_POST['intLimit'],
             'strToken' => $_POST['strToken'],
             'token' => Config::$str_API_Token
         ];
 
 
-        $curl = curl_init();
+        $strLimit="";
 
-        curl_setopt($curl, CURLOPT_URL, Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType'] . "/" . $arrOptions['intId'] . "/movies");
+        if(empty($arrOptions['intOffset'])){
+            $arrOptions['intOffset']=0;
+        }
+        $curl = curl_init();
+        if($arrOptions['intOffset']>=0 && is_numeric($arrOptions['intOffset'])){
+            if($arrOptions['intLimit']>0 && is_numeric($arrOptions['intLimit'])){
+                $strLimit="/".$arrOptions['intOffset']."/".$arrOptions['intLimit'];
+            }elseif ($arrOptions['intLimit']==0 && is_numeric($arrOptions['intLimit'])){
+                $strLimit="/".$arrOptions['intOffset']."/".$arrOptions['intLimit'];
+            }else{
+                $strLimit="/".$arrOptions['intOffset'];
+            }
+        }
+        curl_setopt($curl, CURLOPT_URL, Config::$strTokenUrl . "/api/v1/" . $arrOptions['ajaxUrlType'] . "/" . $arrOptions['intId'] . "/movies".$strLimit);
         curl_setopt($curl, CURLOPT_HTTPGET, 1);
 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
