@@ -1,9 +1,9 @@
 # REST_OAuth_API_Laravel_Client
-## Check this project online: http://www.discoveringworld.net/restclient/
+## Check this project online: http://www.discoveringworld.net/restclient
 
-###### Detailed description of this project: http://web.discoveringworld.net/projects/restful_api_app/
+###### Detailed description of this project: http://web.discoveringworld.net/projects/restful_api_app
 
-###### Check out also my other applications and works: http://web.discoveringworld.net/
+###### Check out also my other applications and works: http://web.discoveringworld.net
 
 #### REST OAuth API client for [REST OAuth API Server APP](https://github.com/Maksim1990/REST_OAuth_API_Laravel_server):
 
