@@ -1,53 +1,63 @@
-# AltoRouter [![Build Status](https://api.travis-ci.org/dannyvankooten/AltoRouter.png)](http://travis-ci.org/dannyvankooten/AltoRouter) [![Latest Stable Version](https://poser.pugx.org/altorouter/altorouter/v/stable.svg)](https://packagist.org/packages/altorouter/altorouter) [![License](https://poser.pugx.org/altorouter/altorouter/license.svg)](https://packagist.org/packages/altorouter/altorouter) [![Code Climate](https://codeclimate.com/github/dannyvankooten/AltoRouter/badges/gpa.svg)](https://codeclimate.com/github/dannyvankooten/AltoRouter) [![Test Coverage](https://codeclimate.com/github/dannyvankooten/AltoRouter/badges/coverage.svg)](https://codeclimate.com/github/dannyvankooten/AltoRouter)
-AltoRouter is a small but powerful routing class for PHP 5.3+, heavily inspired by [klein.php](https://github.com/chriso/klein.php/).
+# REST_OAuth_API_Laravel_Client
+## Check this project online: http://www.discoveringworld.net/restclient/
 
-```php
-$router = new AltoRouter();
+###### Detailed description of this project: http://web.discoveringworld.net/projects/restful_api_app/
 
-// map homepage
-$router->map( 'GET', '/', function() {
-    require __DIR__ . '/views/home.php';
-});
+###### Check out also my other applications and works: http://web.discoveringworld.net/
 
-// map users details page
-$router->map( 'GET|POST', '/users/[i:id]/', function( $id ) {
-  $user = .....
-  require __DIR__ . '/views/user/details.php';
-});
-```
+#### REST OAuth API client for [REST OAuth API Server APP](https://github.com/Maksim1990/REST_OAuth_API_Laravel_server):
 
-## Features
+For testing purposes and prview of API functionality it was created API demo application.
 
-* Can be used with all HTTP Methods
-* Dynamic routing with named route parameters
-* Reversed routing
-* Flexible regular expression routing (inspired by [Sinatra](http://www.sinatrarb.com/))
-* Custom regexes
+Demo application structure is based on manually written light MVC framework taking into account some similar folder structure from Laravel and Symfony frameworks. Routing system was implemented by using [AltoRouter](http://altorouter.com) powerful routing class.
 
-## Getting started
+For template engine it was chosen [Twig](https://twig.symfony.com) because of it’s simplity of integration and wide range of available functionalities.
 
-You need PHP >= 5.3 to use AltoRouter.
+###### Check out also API Documentation on [GitHub](https://github.com/Maksim1990/Swagger_API_Documentation) or based on [Swagger UI](http://www.discoveringworld.net/rest_api_docs/)
 
-- [Install AltoRouter](http://altorouter.com/usage/install.html)
-- [Rewrite all requests to AltoRouter](http://altorouter.com/usage/rewrite-requests.html)
-- [Map your routes](http://altorouter.com/usage/mapping-routes.html)
-- [Match requests](http://altorouter.com/usage/matching-requests.html)
-- [Process the request your preferred way](http://altorouter.com/usage/processing-requests.html)
+#### Installation
 
-## Contributors
-- [Danny van Kooten](https://github.com/dannyvankooten)
-- [Koen Punt](https://github.com/koenpunt)
-- [John Long](https://github.com/adduc)
-- [Niahoo Osef](https://github.com/niahoo)
+1. Install this code on your local system
+     
+    1. Fork this repository (click 'Fork' button in top right corner)
+    2. Clone the forked repository on your local file system
+    
+        ```
+        cd /path/to/install/location
+        
+        git clone https://github.com/Maksim1990/REST_OAuth_API_Laravel_Client.git
+        ```
 
-## License
+2. Change directory into the local clone of the repository
 
-(MIT License)
+    ```
+    cd REST_OAuth_API_Laravel_Client
+    ```
 
-Copyright (c) 2012-2015 Danny van Kooten <hi@dannyvankooten.com>
+ ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)   **ATTENTION!**
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ ###  In order to access to Unit custom tests check out `Unit_Tests` folder
+ 
+ 
+ ###### Home page of API Demo application
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+![Mockup for feature A](http://web.discoveringworld.net/wp-content/uploads/2018/05/api2.png)
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+###### REST API playground page in Demo API application
+
+![Mockup for feature A](http://web.discoveringworld.net/wp-content/uploads/2018/05/api3.png)
+
+###### Communities application page. Page that display’s all available user’s communities, with ability of immediate Ajax searching and creating of new community
+
+![Mockup for feature A](http://web.discoveringworld.net/wp-content/uploads/2018/05/api4.png)
+
+###### Example of page for getting specific book by ID in Demo API application
+
+![Mockup for feature A](http://web.discoveringworld.net/wp-content/uploads/2018/05/api5.png)
+
+###### Example of API response for retrieving book by specific ID in Demo API application
+
+![Mockup for feature A](http://web.discoveringworld.net/wp-content/uploads/2018/05/api6.png)
+
+
+## Check out [REST OAuth API Server APP](https://github.com/Maksim1990/REST_OAuth_API_Laravel_server) code or API Documentation on [GitHub](https://github.com/Maksim1990/Swagger_API_Documentation) or based on [Swagger UI](http://www.discoveringworld.net/rest_api_docs/)
