@@ -5,6 +5,9 @@
 
 ###### Check out also my other applications and works: http://web.discoveringworld.net
 
+### INSTALLATION INSTRUCTIONS
+[HOW TO INSTALL](https://github.com/Maksim1990/REST_OAuth_API_Laravel_Client/blob/master/public/docs/INSTALL.md)
+
 #### REST OAuth API client for [REST OAuth API Server APP](https://github.com/Maksim1990/REST_OAuth_API_Laravel_server):
 
 For testing purposes and prview of API functionality it was created API demo application.
