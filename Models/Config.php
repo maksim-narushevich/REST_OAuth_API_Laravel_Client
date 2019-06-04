@@ -28,12 +28,13 @@ class Config
     /**
      *  Default API token url
      */
-    //public static $strTokenUrl = "http://www.discoveringworld.net/restclient";
-    public static $strTokenUrl = "http://larapassport.local";
+   //public static $strTokenUrl = "http://www.discoveringworld.net/restserver";
+    //-- For docker network
+    public static $strTokenUrl = "http://nginx_server:80";
 
     /**
      *  Default API token url
      */
-    public static $strSubfolderRoute = "/restclient";
+    public static $strSubfolderRoute = "";
 
 }

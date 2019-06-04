@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+    nginx_client:
+        image: nginx:latest
+        networks:
+            - restapi_default
+        ports:
+            - "8309:80"
+            - "4409:443"
+        volumes:
+            - ./docker/nginx/hosts:/etc/nginx/conf.d
+            - ./:/var/www
+            - ./logs/nginx/:/var/log/nginx:cached
+        depends_on:
+            - php_client
+    php_client:
+        build:
+            context: ./
+            dockerfile: ./docker/php/Dockerfile
+        container_name: restapi_client
+        networks:
+            - restapi_default
+        user: "${UID}"
+        volumes:
+          - ./:/var/www
+          - ./data/composer:/.composer
+          - ./logs/app:/var/www/var/logs:cached
+networks:
+    restapi_default:
+        external: true
